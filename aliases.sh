@@ -70,6 +70,7 @@ alias refresh="php artisan migrate:refresh"
 alias rollback="php artisan migrate:rollback"
 alias seed="php artisan db:seed"
 alias serve="php artisan serve --quiet &"
+alias cl="php artisan cache:clear && php artisan config:clear;"
 
 alias phpunit="./vendor/bin/phpunit"
 alias pu="phpunit"
@@ -115,6 +116,7 @@ alias gbr="git branch"
 alias gc="git commit"
 alias gck="git checkout"
 
+alias doccup="docker-compose up -d --build workspace postgres php-fpm apache2 pgadmin"
 # Create a new directory and enter it
 function mkd() {
     mkdir -p "$@" && cd "$@"
