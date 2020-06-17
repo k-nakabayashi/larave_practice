@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $postList = Post::all()->orderBy('id', 'asc')->toArray();
+        $postList = DB::table('posts')
+            ->orderBy('id', 'asc')
+            ->get()->toArray();
+        return view('home')->with("postList", $postList);
     }
 }

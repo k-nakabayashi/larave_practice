@@ -70,7 +70,7 @@ alias refresh="php artisan migrate:refresh"
 alias rollback="php artisan migrate:rollback"
 alias seed="php artisan db:seed"
 alias serve="php artisan serve --quiet &"
-alias cl="php artisan cache:clear && php artisan config:clear;"
+alias cl="php artisan cache:clear && php artisan config:clear && php artisan view:clear;"
 
 alias phpunit="./vendor/bin/phpunit"
 alias pu="phpunit"
