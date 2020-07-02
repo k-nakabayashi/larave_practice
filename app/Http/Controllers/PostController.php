@@ -6,9 +6,17 @@ use App\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Responder\PostResponder;
 
 class PostController extends Controller
 {
+    private $responder;
+
+    public function __construct(PostResponder $responder)
+    {
+        $this->responder = $responder;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,6 +63,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**
@@ -64,8 +73,17 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
-    {
-        //
+    {   
+       
+        $user = auth()->user();
+        $authR_OK = $user->can('view', $post);
+
+        if ($authR_OK) {
+            return $this->responder->response($post);
+        } else {
+            return view('welcome')->with("post", $post); 
+        }
+        
     }
 
     /**
@@ -91,7 +109,7 @@ class PostController extends Controller
 
         $postList = DB::table('posts')
         ->orderBy('id', 'asc')
-        ->get()->toArray();
+        ->get();
 
         return view('home')->with("postList", $postList);
     }

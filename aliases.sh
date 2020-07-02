@@ -116,7 +116,7 @@ alias gbr="git branch"
 alias gc="git commit"
 alias gck="git checkout"
 
-alias doccup="docker-compose up -d --build workspace postgres php-fpm apache2 pgadmin"
+alias doccup="docker-compose up -d --build workspace postgres php-fpm apache2 pgadmin redis"
 # Create a new directory and enter it
 function mkd() {
     mkdir -p "$@" && cd "$@"
